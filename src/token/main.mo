@@ -1,5 +1,6 @@
 import Principal "mo:base/Principal";
 import HashMap "mo:base/HashMap";
+import Debug "mo:base/Debug";
 
 actor Token {
 
@@ -23,5 +24,17 @@ actor Token {
     public query func getSymbol() : async Text {
         return symbol;
     };
+
+    public shared(msg) func payOut() : async Text {
+        // Debug.print(debug_show(msg.caller));
+        if (balances.get(msg.caller) == null){
+            let amount = 10000;
+            balances.put(msg.caller, amount );
+            return "Success";
+        } else {
+            return "Already Claimed"
+        };
+        
+    }
 
 }
