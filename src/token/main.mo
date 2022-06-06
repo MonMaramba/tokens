@@ -6,6 +6,8 @@ import Iter "mo:base/Iter";
 
 actor Token {
 
+    Debug.print("Hi");
+
     let owner : Principal = Principal.fromText("gafdc-364ut-fuzim-mcvsr-px4lj-ahxtw-jvtma-r2svf-j44dt-hkau7-4ae");
     let totalSupply : Nat = 1000000000;
     let symbol : Text = "MERA";
@@ -13,6 +15,9 @@ actor Token {
     private stable var balanceEntries: [(Principal, Nat)] = [];
     
     private var balances = HashMap.HashMap<Principal, Nat>(1, Principal.equal, Principal.hash);
+    if (balances.size() < 1){
+        balances.put(owner, totalSupply);
+    };
 
     
 
